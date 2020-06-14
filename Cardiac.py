@@ -42,7 +42,7 @@ class Cardiac:
         self.accumulator = self.memory[address]
 
     def _ADD(self, address: int) -> None:
-        self.accumulator += self.memory[address]
+        self.accumulator = (self.memory[address] + self.accumulator) % 10000
 
     def _TAC(self, address: int) -> None:
         if self.accumulator < 0:
