@@ -30,7 +30,8 @@ class Cardiac:
             0: self._INP, 1: self._CLA, 2: self._ADD, 3: self._TAC, 4: self._SFT,
             5: self._OUT, 6: self._STO, 7: self._SUB, 8: self._JMP, 9: self._HRS
         }
-        opcode, operand = instruction_register // 100, instruction_register % 100
+        opcode = instruction_register // 100
+        operand = instruction_register % 100
         opcode_handler: Callable[[int], None] = opcode_handlers[opcode]
         opcode_handler(operand)
 
@@ -48,12 +49,14 @@ class Cardiac:
             self.program_counter = address
 
     def _SFT(self, places: int) -> None:
-        left, right = places // 10, places % 10
-        self.accumulator = self.accumulator * 10 ** left % 10000
-        self.accumulator = self.accumulator // 10 ** right
+        places_left = places // 10
+        places_right = places % 10
+        self.accumulator = self.accumulator * 10 ** places_left % 10000
+        self.accumulator = self.accumulator // 10 ** places_right
 
     def _OUT(self, address: int) -> None:
-        self.output.append(str(self.memory[address]).zfill(3))
+        zero_padded = str(self.memory[address]).zfill(3)
+        self.output.append(zero_padded)
 
     def _STO(self, address: int) -> None:
         self.memory[address] = self.accumulator

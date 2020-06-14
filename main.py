@@ -9,4 +9,4 @@ if __name__ == "__main__":
 
     cardiac = Cardiac(program)
     output = cardiac.run()
-    print('\n'.join(output))
+    print("\n".join(output))
