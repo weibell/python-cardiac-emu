@@ -1,4 +1,6 @@
 # python-cardiac-emu
+[![codecov](https://codecov.io/gh/weibell/python-cardiac-emu/branch/master/graph/badge.svg)](https://codecov.io/gh/weibell/python-cardiac-emu)
+
 A simple [CARDIAC](https://en.wikipedia.org/wiki/CARDboard_Illustrative_Aid_to_Computation) emulator written in Python
 
 
