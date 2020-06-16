@@ -1,10 +1,10 @@
-from typing import List, Callable, Optional
+from typing import List, Callable, Union
 
 
 class Cardiac:
     input: List[str]
     output: List[str]
-    memory: List[Optional[int]]
+    memory: List[Union[int, None]]
     accumulator: int
     program_counter: int
 

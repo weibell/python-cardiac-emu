@@ -14,14 +14,14 @@ class TestCardiac(unittest.TestCase):
 
     def test_run(self):
         cardiac = Cardiac()
-        cardiac.load(['002', '003', '942'])
+        cardiac.load(["002", "003", "942"])
         cardiac.run()
         self.assertEqual([1, 2, 3, 942] + [None] * 96, cardiac.memory)
         self.assertEqual(42, cardiac.program_counter)
 
     def test_INP(self):
         cardiac = Cardiac()
-        cardiac.load(['100'])
+        cardiac.load(["100"])
         cardiac._INP(42)
         self.assertEqual([1] + [None] * 41 + [100] + [None] * 57, cardiac.memory)
 
@@ -77,7 +77,7 @@ class TestCardiac(unittest.TestCase):
         cardiac.memory[42] = 100
         cardiac._OUT(0)
         cardiac._OUT(42)
-        self.assertEqual(['001', '100'], cardiac.output)
+        self.assertEqual(["001", "100"], cardiac.output)
 
     def test_STO(self):
         cardiac = Cardiac()
@@ -92,7 +92,7 @@ class TestCardiac(unittest.TestCase):
 
     def test_JMP(self):
         cardiac = Cardiac()
-        cardiac.load(['842'])
+        cardiac.load(["842"])
         cardiac.step()
         cardiac.step()
         self.assertEqual(42, cardiac.program_counter)
