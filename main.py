@@ -1,6 +1,6 @@
 import sys
 
-from Cardiac import Cardiac
+from cardiac import Cardiac
 
 if __name__ == "__main__":
     program_file = sys.argv[1]

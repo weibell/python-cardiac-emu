@@ -29,13 +29,13 @@ class Cardiac:
         instruction_register: int = self.memory[self.program_counter]
         self.program_counter += 1
 
-        opcode_handlers = {
+        opcode_table = {
             0: self._INP, 1: self._CLA, 2: self._ADD, 3: self._TAC, 4: self._SFT,
             5: self._OUT, 6: self._STO, 7: self._SUB, 8: self._JMP, 9: self._HRS
         }
         opcode = instruction_register // 100
         operand = instruction_register % 100
-        opcode_handler: Callable[[int], None] = opcode_handlers[opcode]
+        opcode_handler: Callable[[int], None] = opcode_table[opcode]
         opcode_handler(operand)
 
     def _INP(self, address: int) -> None:

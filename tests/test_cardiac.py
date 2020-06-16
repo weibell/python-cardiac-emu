@@ -1,6 +1,6 @@
 import unittest
 
-from Cardiac import Cardiac, HaltException
+from cardiac import Cardiac, HaltException
 
 
 class TestCardiac(unittest.TestCase):
