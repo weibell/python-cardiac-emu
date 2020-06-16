@@ -7,6 +7,7 @@ if __name__ == "__main__":
     with open(program_file) as f:
         program = [line.strip() for line in f]
 
-    cardiac = Cardiac(program)
+    cardiac = Cardiac()
+    cardiac.load(program)
     output = cardiac.run()
     print("\n".join(output))

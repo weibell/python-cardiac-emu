@@ -8,12 +8,15 @@ class Cardiac:
     accumulator: int
     program_counter: int
 
-    def __init__(self, program):
-        self.input = program
+    def __init__(self):
+        self.input = []
         self.output = []
         self.memory = [1] + [None] * 99
         self.accumulator = 0
         self.program_counter = 0
+
+    def load(self, program: List[str]) -> None:
+        self.input = program
 
     def run(self) -> List[str]:
         try:
@@ -42,7 +45,7 @@ class Cardiac:
         self.accumulator = self.memory[address]
 
     def _ADD(self, address: int) -> None:
-        self.accumulator = (self.memory[address] + self.accumulator) % 10000
+        self.accumulator = (self.accumulator + self.memory[address]) % 10000
 
     def _TAC(self, address: int) -> None:
         if self.accumulator < 0:
