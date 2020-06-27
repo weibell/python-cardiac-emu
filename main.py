@@ -1,10 +1,13 @@
-import sys
+from argparse import ArgumentParser
 
 from cardiac import Cardiac
 
 if __name__ == "__main__":
-    program_file = sys.argv[1]
-    with open(program_file) as f:
+    parser = ArgumentParser(description="CARDIAC interpreter written in Python")
+    parser.add_argument("program", type=str, help="Program")
+    args = parser.parse_args()
+
+    with open(args.program) as f:
         program = [line.strip() for line in f]
 
     cardiac = Cardiac()
