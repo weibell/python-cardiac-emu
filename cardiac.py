@@ -15,7 +15,7 @@ class Cardiac:
         self.accumulator = 0
         self.program_counter = 0
 
-    def load(self, program: List[str]) -> None:
+    def load(self, program: List[str]):
         self.input = program
 
     def run(self) -> List[str]:
@@ -25,7 +25,7 @@ class Cardiac:
         except HaltException:
             return self.output
 
-    def step(self) -> None:
+    def step(self):
         instruction_register: int = self.memory[self.program_counter]
         self.program_counter += 1
 
@@ -38,40 +38,40 @@ class Cardiac:
         opcode_handler: Callable[[int], None] = opcode_table[opcode]
         opcode_handler(operand)
 
-    def _INP(self, address: int) -> None:
+    def _INP(self, address: int):
         self.memory[address] = int(self.input.pop(0))
 
-    def _CLA(self, address: int) -> None:
+    def _CLA(self, address: int):
         self.accumulator = self.memory[address]
 
-    def _ADD(self, address: int) -> None:
+    def _ADD(self, address: int):
         self.accumulator = (self.accumulator + self.memory[address]) % 10000
 
-    def _TAC(self, address: int) -> None:
+    def _TAC(self, address: int):
         if self.accumulator < 0:
             self.program_counter = address
 
-    def _SFT(self, places: int) -> None:
+    def _SFT(self, places: int):
         places_left = places // 10
         places_right = places % 10
         self.accumulator = self.accumulator * 10 ** places_left % 10000
         self.accumulator = self.accumulator // 10 ** places_right
 
-    def _OUT(self, address: int) -> None:
+    def _OUT(self, address: int):
         zero_padded = str(self.memory[address]).zfill(3)
         self.output.append(zero_padded)
 
-    def _STO(self, address: int) -> None:
+    def _STO(self, address: int):
         self.memory[address] = self.accumulator
 
-    def _SUB(self, address: int) -> None:
+    def _SUB(self, address: int):
         self.accumulator -= self.memory[address]
 
-    def _JMP(self, address: int) -> None:
+    def _JMP(self, address: int):
         self.memory[99] = 800 + self.program_counter
         self.program_counter = address
 
-    def _HRS(self, address: int) -> None:
+    def _HRS(self, address: int):
         self.program_counter = address
         raise HaltException
 
