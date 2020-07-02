@@ -13,10 +13,10 @@ A simple [CARDIAC](https://en.wikipedia.org/wiki/CARDboard_Illustrative_Aid_to_C
 #### Caveats
 * No explicit support for negative memory cells
 * No exception handling: Buggy programs can crash the emulator 
-* No debugging tools (yet)
+* No debugging tools
 
 
-#### Example call
+#### Usage
 ```commandline
 $ python3 main.py example_programs/powers_of_2.txt 
 001
